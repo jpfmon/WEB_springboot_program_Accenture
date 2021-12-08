@@ -8,15 +8,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
-@RequestMapping(path = "/books")
 public class BooksControllers {
 
     @Autowired
     private BooksRepository booksRepository;
 
-    @GetMapping()
+    @GetMapping("/addnewbook")
     public String bookList() {
-        return "book.html";
+        return "addnewbook.html";
     }
     /*@GetMapping(value = "/allBooks")
     public @ResponseBody
@@ -26,10 +25,10 @@ public class BooksControllers {
 
 
 
-    /*@PostMapping(value = "/addBook")
-    public @ResponseBody String addBook(@RequestParam String title) {
-        Books book = new Books(title, Availability.AVAILABLE);
-        booksRepository.save(book);
-        return "Success";
-    }*/
+//    @PostMapping(value = "/addthisnewbook")
+//    public @ResponseBody String addBook(@RequestParam String title) {
+//        Books book = new Books(title, Availability.AVAILABLE);
+//        booksRepository.save(book);
+//        return "addnewbook.html";
+//    }
 }
