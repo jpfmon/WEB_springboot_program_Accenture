@@ -29,12 +29,10 @@
                 </thead>
 
             </table>
-            <input type="submit" style="margin-left: 50%" value="Return to books list"/>
+            <br>
+            <button onclick="window.location.href='/';">Return to books list</button>
         </form>
     </div>
 </div>
-<form name="logoutForm" th:action="@{/logout}" method="post" th:hidden="true">
-    <input hidden type="submit" value="Sign Out"/>
-</form>
 </body>
 </html>

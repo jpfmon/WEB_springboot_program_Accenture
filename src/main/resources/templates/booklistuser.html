@@ -10,6 +10,8 @@
         <h1 style="color: white; font-size: 90px"> LIBRARY </h1>
     </div>
     <div style="margin-left: 35%; margin-right: auto; padding: 10px">
+        <button onclick="window.location.href='/addnewbook';">Add new book</button>
+        <br>
         <form th:action="@{'library/confirmreservation'} ">
             <table style="color: white; border: solid 2px white; font-size: 25px">
                 <thead>
@@ -24,7 +26,7 @@
                     <td th:text="${book.title}">book title</td>
                     <td th:text="${book.authorsList}">book title</td>
                     <td th:text="${book.url}">book url</td>
-                    <td><input type="checkbox" th:name = "bookIds" th:value="${book.id}"></input></td>
+                    <td><input type="checkbox" th:name="bookIds" th:value="${book.id}"></input></td>
                     <td><a th:href="@{'/viewbook?id=' + ${book.id}}"> View more</a></td>
                 </tr>
                 </tbody>
@@ -33,6 +35,7 @@
 
             </table>
             <input type="submit" style="margin-left: 50%" value="Go to confirm reservation"/>
+            <p th:text="${empty}" style="color: red; font-size: 30px"></p>
         </form>
     </div>
 </div>

@@ -35,7 +35,15 @@ public class LibraryController {
     @RequestMapping("/library/confirmreservation")
     public String startReservation(@RequestParam MultiValueMap<String, Integer> map, Model model) {
 
+        System.out.println("Retrieved: " + map);
+        if(map.isEmpty()){
+            model.addAttribute("empty", "add books to make confirmation");
+            model.addAttribute("books", booksRepository.findAll());
+            return "redirect:/";
+        }
+
         String[] booksSelected = map.get("bookIds").toString().replaceAll("\\[","").replaceAll("\\]","").split(",");
+
         for (String number:booksSelected) {
             System.out.println("Book selected: " + number.trim());
         }
