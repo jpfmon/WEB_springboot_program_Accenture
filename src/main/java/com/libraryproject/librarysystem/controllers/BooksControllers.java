@@ -5,6 +5,7 @@ import com.libraryproject.librarysystem.domain.Books;
 import com.libraryproject.librarysystem.repositories.BooksRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
@@ -14,7 +15,10 @@ public class BooksControllers {
     private BooksRepository booksRepository;
 
     @GetMapping("/addnewbook")
-    public String bookList() {
+    public String bookList(Model model) {
+        Books book = new Books();
+        model.addAttribute("book", book);
+
         return "addnewbook.html";
     }
     /*@GetMapping(value = "/allBooks")
