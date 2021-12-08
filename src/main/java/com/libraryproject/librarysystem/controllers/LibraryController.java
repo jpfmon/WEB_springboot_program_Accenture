@@ -28,7 +28,6 @@ public class LibraryController {
 
     @RequestMapping("/")
     public String dashboard(Model model) {
-
         model.addAttribute("books", booksRepository.findAll());
         return "booklistuser.html";
     }
