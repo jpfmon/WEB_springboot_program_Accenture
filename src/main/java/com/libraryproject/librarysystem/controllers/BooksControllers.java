@@ -25,6 +25,7 @@ public class BooksControllers {
     @PostMapping("/addthisnewbook")
     public String addBook(@RequestParam String title, String url) {
         Books book = new Books(title, url);
+        book.setAvailability(Availability.AVAILABLE);
         booksRepository.save(book);
         return "redirect:/";
     }
