@@ -24,6 +24,11 @@ public class Authors {
         this.authorCountry = authorCountry;
     }
 
+    public Authors(String authorName, String authorCountry) {
+        this.authorName = authorName;
+        this.authorCountry = authorCountry;
+    }
+
     public int getAuthorID() {
         return authorID;
     }
