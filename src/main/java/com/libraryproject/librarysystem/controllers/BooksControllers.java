@@ -32,9 +32,36 @@ public class BooksControllers {
     }
 
     @GetMapping("/viewbook/{id}")
-    public String infoOneBook(Model model, @PathVariable int id) {
+    public String viewOneBook(Model model, @PathVariable int id) {
         Books book = booksRepository.getById(id);
         model.addAttribute("book", book);
         return "infoonebook.html";
     }
+
+    @GetMapping("/viewbook/delete/{id}")
+    public String deleteBook(@PathVariable int id) {
+        booksRepository.deleteById(id);
+
+        return "redirect:/";
+    }
+
+    @GetMapping("/viewbook/edit/{id}")
+    public String editBook(Model model) {
+        Books book = new Books();
+        model.addAttribute("book", book);
+
+        return "editbook.html";
+    }
+
+    @GetMapping("/editthisbook")
+    public String editThisBook(Model model, @PathVariable int id, @RequestParam String title, String url) {
+        Books book = booksRepository.getById(id);
+        book.setTitle(title);
+        book.setUrl(url);
+        booksRepository.save(book);
+        book = booksRepository.getById(id);
+        model.addAttribute("bookb", book);
+        return "infoonebook.html";
+    }
+
 }
