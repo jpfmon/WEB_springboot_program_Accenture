@@ -27,7 +27,7 @@
                     <td th:text="${book.authorsList}">book title</td>
                     <td th:text="${book.url}">book url</td>
                     <td><input type="checkbox" th:name="bookIds" th:value="${book.id}"></input></td>
-                    <td><a th:href="@{'/viewbook?id=' + ${book.id}}"> View more</a></td>
+                    <td><a th:href="@{'/viewbook/' + ${book.id}}"> View more</a></td>
                 </tr>
                 </tbody>
                 </tr>

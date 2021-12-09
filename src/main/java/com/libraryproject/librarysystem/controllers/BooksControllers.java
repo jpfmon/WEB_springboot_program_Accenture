@@ -21,18 +21,18 @@ public class BooksControllers {
 
         return "addnewbook.html";
     }
-    /*@GetMapping(value = "/allBooks")
-    public @ResponseBody
-    Iterable<Books> getAll () {
-        return booksRepository.findAll();
-    }*/
 
+    @PostMapping("/addthisnewbook")
+    public String addBook(@RequestParam String title, String url) {
+        Books book = new Books(title, url);
+        booksRepository.save(book);
+        return "redirect:/";
+    }
 
-
-//    @PostMapping(value = "/addthisnewbook")
-//    public @ResponseBody String addBook(@RequestParam String title) {
-//        Books book = new Books(title, Availability.AVAILABLE);
-//        booksRepository.save(book);
-//        return "addnewbook.html";
-//    }
+    @GetMapping("/viewbook/{id}")
+    public String infoOneBook(Model model, @PathVariable int id) {
+        Books book = booksRepository.getById(id);
+        model.addAttribute("book", book);
+        return "infoonebook.html";
+    }
 }
