@@ -12,13 +12,13 @@
     <div>
         <h1 style="color: white; font-size: 60px; text-align: center">WELCOME TO THE LIBRARY</h1>
     </div>
-    <div style="position: relative; color: white; margin-top: 300px; margin-left: 40%; margin-right: 40%; padding: 20px; padding-bottom: 50px; border: solid white 2px; text-align: center">
-        <h2>DASHBOARD</h2>
-        <table >
+    <div style="position: relative; color: white; margin-top: 100px; margin-left: 40%; margin-right: 40%; padding: 10px; padding-bottom: 40px; border: solid white 2px; text-align: center">
+        <h2 style="font-size: 40px">DASHBOARD</h2>
+        <table style="margin: 0 auto">
             <tbody>
             <tr>
-                <td><button onclick="window.location.href='/bookslist';">See books list</button></td>
-                <td><button onclick="window.location.href='/authorslist';">See authors list</button></td>
+                <td><button onclick="window.location.href='/bookslist';" style="font-size: 20px">See books list</button></td>
+                <td><button onclick="window.location.href='/authorslist';" style="font-size: 20px">See authors list</button></td>
             </tr>
                 <td></td>
                 <td></td>
@@ -28,7 +28,7 @@
     </div>
 </div>
 <form name="logoutForm" th:action="@{/logout}" method="post">
-    <input type="submit" value="Sign Out"/>
+    <input type="submit" value="Sign Out" style="font-size: 20px"/>
 </form>
 </body>
 </html>
