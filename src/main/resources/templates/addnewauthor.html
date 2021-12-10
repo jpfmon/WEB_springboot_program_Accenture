@@ -10,20 +10,19 @@
         <h1 style="color: white; font-size: 90px"> LIBRARY </h1>
     </div>
     <div style="margin-left: 35%; margin-right: auto; padding: 10px">
-        <form method="POST" th:action="@{/addthisnewbook}" th:object="${book}">
-            <label for="title">Write tittle for new book:</label>
+        <form method="POST" th:action="@{/addthisnewauthor}" th:object="${author}">
+            <label for="title">Name of new author:</label>
             <br>
-            <input type="text" id="title" th:value="${book.title}" th:field="*{title}" required minlength="4">
+            <input type="text" id="title" th:value="${author.authorName}" th:field="*{authorName}" required minlength="4">
             <br>
-            <label for="url">Write url for new book:</label>
+            <label for="url">Write country of new author:</label>
             <br>
-            <input type="text" id="url" th:value="${book.url}" th:field="*{url}" required minlength="4">
+            <input type="text" id="url" th:value="${author.authorCountry}" th:field="*{authorCountry}" required minlength="4">
             <br>
-            <input type="hidden" th:value="1" th:field="*{availability}" />
             <input type="submit" value="Submit">
         </form>
         <br>
-        <button onclick="window.location.href='/bookslist';">Return to books list</button>
+        <button onclick="window.location.href='/authorslist';">Return to authors list</button>
     </div>
 </div>
 <form name="logoutForm" th:action="@{/logout}" method="post" th:hidden="true">

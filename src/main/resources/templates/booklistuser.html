@@ -11,7 +11,7 @@
     </div>
     <div style="margin-left: 35%; margin-right: auto; padding: 10px">
         <button onclick="window.location.href='/addnewbook';">Add new book</button>
-        <br>
+        <br><br>
         <form th:action="@{'library/confirmreservation'} ">
             <table style="color: white; border: solid 2px white; font-size: 25px">
                 <thead>
@@ -37,6 +37,8 @@
             <input type="submit" style="margin-left: 50%" value="Go to confirm reservation"/>
             <p th:text="${empty}" style="color: red; font-size: 30px"></p>
         </form>
+        <br>
+        <button onclick="window.location.href='/';">Return to dashboard</button>
     </div>
 </div>
 <form name="logoutForm" th:action="@{/logout}" method="post">

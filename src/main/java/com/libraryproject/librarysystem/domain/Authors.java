@@ -29,6 +29,14 @@ public class Authors {
         this.authorCountry = authorCountry;
     }
 
+    public List<Books> getBooksList() {
+        return booksList;
+    }
+
+    public void setBooksList(List<Books> booksList) {
+        this.booksList = booksList;
+    }
+
     public int getAuthorID() {
         return authorID;
     }

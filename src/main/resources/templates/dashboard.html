@@ -13,21 +13,22 @@
     <div style="position: relative; color: white; margin-top: 300px; margin-left: 40%; margin-right: 40%; padding: 20px; padding-bottom: 50px; border: solid white 2px; text-align: center">
         <h2>DASHBOARD</h2>
 
-        <form id="form-validation" name="form-validation"  th:action="@{/authenticateTheUser}" method="POST">
-            <label for="validation-email">Enter your email:</label>
-            <br>
-            <input type="text" id="validation-email" name="username" th:value="1">
-            <br>
-            <label for="validation-password">Enter your password:</label>
-            <br>
-            <input type="password" id="validation-password" name="password" th:value="1">
-            <br><br>
-            <button type="submit">Log In</button>
-        </form>
-        <p th:text="${error}" style="color: red"></p>
+        <table >
+            <tbody>
+            <tr>
+                <td><button onclick="window.location.href='/bookslist';">See books list</button></td>
+                <td><button onclick="window.location.href='/authorslist';">See authors list</button></td>
+            </tr>
+                <td></td>
+                <td></td>
+            <td></td>
+            </tbody>
+        </table>
     </div>
 </div>
-
+<form name="logoutForm" th:action="@{/logout}" method="post">
+    <input type="submit" value="Sign Out"/>
+</form>
 </body>
 </html>
 

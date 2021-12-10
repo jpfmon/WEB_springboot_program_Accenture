@@ -10,7 +10,13 @@
         <h1 style="color: white; font-size: 90px"> LIBRARY </h1>
     </div>
     <div style="margin-left: 35%; margin-right: auto; padding: 10px">
-        <form method="GET" th:action="@{/editthisbook}" th:object="${book}">
+<!--        has to be post method, because we're submitting a whole java object, not just strings as path parameters-->
+        <form method="POST" th:action="@{/editthisbook}" th:object="${book}">
+<!--        <form method="GET" th:action="@{/editthisbook}" th:object="${book}">-->
+            <label for="id">Id of book:</label>
+            <br>
+            <input type="text" id="id"  th:value="${book.id}" th:field="*{id}" readonly>
+            <br>
             <label for="title">Write new title for a book:</label>
             <br>
             <input type="text" id="title" th:value="${book.title}" th:field="*{title}" required minlength="4">
@@ -19,8 +25,15 @@
             <br>
             <input type="text" id="url" th:value="${book.url}" th:field="*{url}" required minlength="4">
             <br>
-            <input type="hidden" th:value="1" th:field="*{availability}" />
-            <input type="submit" value="Submit">
+            <label for="availability">Availability: (set with: AVAILABLE, RESERVED, UNAVAILABLE)</label>
+            <br>
+            <input type="text" id="availability" th:value="${book.availability}" th:field="*{availability}" readonly/>
+<!--            <input type="text" id="availability" />-->
+            <br><br>
+            <input type="submit" value="Update book info">
+        </form>
+        <br><br>
+        <button onclick="window.location.href='/';">Return to dashboard</button>
     </div>
 </div>
 <form name="logoutForm" th:action="@{/logout}" method="post" th:hidden="true">

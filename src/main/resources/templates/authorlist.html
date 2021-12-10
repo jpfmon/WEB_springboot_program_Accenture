@@ -12,31 +12,27 @@
     <div style="margin-left: 35%; margin-right: auto; padding: 10px">
         <button onclick="window.location.href='/addnewauthor';">Add new author</button>
         <br>
-        <form th:action="@{'library/confirmreservation'} ">
-            <table style="color: white; border: solid 2px white; font-size: 25px">
-                <thead>
-                <tr>
-                    <th>Author ID</th>
-                    <th>Name</th>
-                    <th>Country</th>
-                    <th>Books</th>
-                <tbody>
-                <tr th:each="author :${authors}">
-                    <td th:text="${author.authorID}">author id</td>
-                    <td th:text="${author.authorName}">author name</td>
-                    <td th:text="${author.authorCountry}">book title</td>
-                    <td th:text="${author.booksList}">author name</td>
-                    <td><input type="checkbox" th:name="authorIds" th:value="${author.authorID}"></input></td>
-                    <td><a th:href="@{'/viewauthor/' + ${author.authorID}}"> View more</a></td>
-                </tr>
-                </tbody>
-                </tr>
-                </thead>
-
-            </table>
-            <input type="submit" style="margin-left: 50%" value="Go to confirm reservation"/>
-            <p th:text="${empty}" style="color: red; font-size: 30px"></p>
-        </form>
+        <table style="color: white; border: solid 2px white; font-size: 25px">
+            <thead>
+            <tr>
+                <th>Author ID</th>
+                <th>Name</th>
+                <th>Country</th>
+                <th>Books</th>
+            <tbody>
+            <tr th:each="author :${authors}">
+                <td th:text="${author.authorID}">author id</td>
+                <td th:text="${author.authorName}">author name</td>
+                <td th:text="${author.authorCountry}">book title</td>
+                <td th:text="${author.booksList}">author name</td>
+                <td><a th:href="@{'/viewauthor/' + ${author.authorID}}"> View more</a></td>
+            </tr>
+            </tbody>
+            </tr>
+            </thead>
+        </table>
+        <br>
+        <button onclick="window.location.href='/';">Return to dashboard</button>
     </div>
 </div>
 <form name="logoutForm" th:action="@{/logout}" method="post">
