@@ -23,7 +23,8 @@
                 <tr>
                     <td th:text="${book.id}">book id</td>
                     <td th:text="${book.title}">book title</td>
-                    <td th:text="${book.url}">book url</td>
+<!--                    <td th:text="${book.url}">book url</td>-->
+                    <td style="text-align:center"><img th:src="${book.url}" alt="cover image" width="40" height="50"/></td>
                     <td><a th:href="@{'edit/' + ${book.id}}"> Edit book</a></td>
                     <td><a th:href="@{'delete/' + ${book.id}}" style="color: red"> Delete book</a></td>
                 </tr>
