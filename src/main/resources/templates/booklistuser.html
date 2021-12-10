@@ -32,7 +32,7 @@
                 <tr th:each="book :${books}">
                     <td style="text-align:center" th:text="${book.id}">book id</td>
                     <td style="text-align:center" th:text="${book.title}">book title</td>
-                    <td style="text-align:center" th:text="${book.authorsList}">book title</td>
+                    <td style="text-align:center" th:text="${book.authorsList[0].authorName}">authors</td>
                     <td style="text-align:center"><img th:src="${book.url}" alt="cover image" width="40" height="50"/></td>
                     <td style="text-align:center" th:text="${book.availability}">book status</td>
                     <!--                    <td th:text="${book.url}" style="overflow: hidden"; width="10%">book url</td>-->

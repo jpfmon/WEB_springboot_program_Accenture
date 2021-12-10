@@ -23,8 +23,8 @@
             <tr th:each="author :${authors}">
                 <td th:text="${author.authorID}">author id</td>
                 <td th:text="${author.authorName}">author name</td>
-                <td th:text="${author.authorCountry}">book title</td>
-                <td th:text="${author.booksList}">author name</td>
+                <td th:text="${author.authorCountry}">author country</td>
+                <td th:text="${author.booksList[0].title}">book title</td>
                 <td><a th:href="@{'/viewauthor/' + ${author.authorID}}"> View more</a></td>
             </tr>
             </tbody>

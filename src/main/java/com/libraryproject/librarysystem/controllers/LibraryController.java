@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 public class LibraryController {
@@ -28,6 +29,11 @@ public class LibraryController {
 
     @RequestMapping("/")
     public String dashboard() {
+
+        Books book = booksRepository.getById(11);
+
+        System.out.println("Author of Quijote: " + book.getAuthorsList());
+        System.out.println("Author of Quijote: " + book.getAuthorsList().get(0));
         return "dashboard.html";
     }
 
