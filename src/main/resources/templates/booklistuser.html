@@ -5,40 +5,53 @@
     <title>Books list</title>
 </head>
 <body>
-<div style="position: relative; height: 1000px; background-image: url(https://www.marketplace.org/wp-content/uploads/2021/01/Books_New-e1611252343470.jpg?fit=2879%2C1619); opacity: 0.5">
+<div style="position: relative; height: 1000px; background-image: url(https://www.marketplace.org/wp-content/uploads/2021/01/Books_New-e1611252343470.jpg?fit=2879%2C1619); opacity: 0.7">
     <div style="position: relative; text-align: center">
         <h1 style="color: white; font-size: 90px"> LIBRARY </h1>
     </div>
-    <div style="margin-left: 35%; margin-right: auto; padding: 10px">
-        <button onclick="window.location.href='/addnewbook';">Add new book</button>
+    <div style="padding: 10px">
         <br><br>
+        <button style="margin-left: 30%;" onclick="window.location.href='/addnewbook';">Add new book</button>
+        <button style="margin-left: 10%;" onclick="window.location.href='/'">Return to dashboard</button>
+        <br>
+        <br>
         <form th:action="@{'library/confirmreservation'} ">
-            <table style="color: white; border: solid 2px white; font-size: 25px">
+            <table style="color: white; border: solid 2px white; font-size: 25px; margin: 0 auto;">
                 <thead>
                 <tr>
                     <th>Book ID</th>
                     <th>Title</th>
                     <th>Authors</th>
                     <th>Cover</th>
-                <tbody>
-                <tr th:each="book :${books}">
-                    <td th:text="${book.id}">book id</td>
-                    <td th:text="${book.title}">book title</td>
-                    <td th:text="${book.authorsList}">book title</td>
-                    <td th:text="${book.url}">book url</td>
-                    <td><input type="checkbox" th:name="bookIds" th:value="${book.id}"></input></td>
-                    <td><a th:href="@{'/viewbook/' + ${book.id}}"> View more</a></td>
-                </tr>
-                </tbody>
+                    <th>Status</th>
+                    <th>Reserve?</th>
+                    <th>Details</th>
                 </tr>
                 </thead>
-
+                <tbody>
+                <tr th:each="book :${books}">
+                    <td style="text-align:center" th:text="${book.id}">book id</td>
+                    <td style="text-align:center" th:text="${book.title}">book title</td>
+                    <td style="text-align:center" th:text="${book.authorsList}">book title</td>
+                    <td style="text-align:center"><img th:src="${book.url}" alt="cover image" width="40" height="50"/></td>
+                    <td style="text-align:center" th:text="${book.availability}">book status</td>
+                    <!--                    <td th:text="${book.url}" style="overflow: hidden"; width="10%">book url</td>-->
+                    <td style="text-align:center"><input type="checkbox" th:name="bookIds" th:value="${book.id}"/></td>
+                    <td style="text-align:center"><a th:href="@{'/viewbook/' + ${book.id}}"> View more</a></td>
+                </tr>
+                </tbody>
+                <tfoot>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td><input type="submit" style="margin: 0 auto;" value="Go to confirm reservation"/></td>
+                </tfoot>
             </table>
-            <input type="submit" style="margin-left: 50%" value="Go to confirm reservation"/>
+            <br>
             <p th:text="${empty}" style="color: red; font-size: 30px"></p>
         </form>
         <br>
-        <button onclick="window.location.href='/';">Return to dashboard</button>
     </div>
 </div>
 <form name="logoutForm" th:action="@{/logout}" method="post">
