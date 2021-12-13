@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @Controller
 public class AuthorsControllers {
@@ -19,6 +20,8 @@ public class AuthorsControllers {
 
     @RequestMapping("/authorslist")
     public String allAuthors(Model model) {
+        List<Authors> authors = authorsRepository.findAll();
+
         model.addAttribute("authors", authorsRepository.findAll());
         return "authorlist.html";
     }

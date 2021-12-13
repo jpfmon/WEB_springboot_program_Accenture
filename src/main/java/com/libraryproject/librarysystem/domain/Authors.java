@@ -31,6 +31,10 @@ public class Authors {
 
     }
 
+    public void addBookToList(Books book){
+        this.booksList.add(book);
+    }
+
     public List<Books> getBooksList() {
         return booksList;
     }
