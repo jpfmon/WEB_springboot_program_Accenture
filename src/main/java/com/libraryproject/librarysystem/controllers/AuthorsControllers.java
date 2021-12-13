@@ -63,10 +63,11 @@ public class AuthorsControllers {
     }
 
     @GetMapping("/viewauthor/delete/{id}")
-    public String deleteBook(@PathVariable int id) {
+    public String deleteBook(@PathVariable int id, Model model) {
         System.out.println("Trying to delete this author: " + id );
         authorsRepository.deleteById(id);
-
+        List<Authors> authors = authorsRepository.findAll();
+        model.addAttribute("authors", authorsRepository.findAll());
         return "redirect:/authorslist";
     }
 }
