@@ -21,7 +21,7 @@
                 <tr th:each="book :${booksSelected}">
                     <td th:text="${book.id}">book id</td>
                     <td th:text="${book.title}">book title</td>
-                    <td th:text="${book.url}">book url</td>
+                    <td style="text-align:center"><img th:src="${book.url}" alt="cover image" width="40" height="50"/></td>
                     <td><input type="checkbox" th:name = "bookIds" th:value="${book.id}" checked></input></td>
                 </tr>
                 </tbody>

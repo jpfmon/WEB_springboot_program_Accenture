@@ -6,6 +6,7 @@ import com.libraryproject.librarysystem.domain.Orders;
 import com.libraryproject.librarysystem.domain.Users;
 import com.libraryproject.librarysystem.repositories.OrdersRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,6 +14,7 @@ import javax.validation.Valid;
 import java.util.Date;
 import java.util.List;
 
+@Controller
 public class OrdersControllers {
 
         @Autowired
@@ -20,7 +22,8 @@ public class OrdersControllers {
 
         @RequestMapping("/orderslist")
         public String allOrders(Model model) {
-            model.addAttribute("orders", ordersRepository.findAll());
+            List<Orders> orders = ordersRepository.findAll();
+            model.addAttribute("orders", orders);
             return "orderslist.html";
         }
 

@@ -31,9 +31,6 @@ public class LibraryController {
     public String dashboard() {
 
         Books book = booksRepository.getById(11);
-
-        System.out.println("Author of Quijote: " + book.getAuthorsList());
-        System.out.println("Author of Quijote: " + book.getAuthorsList().get(0));
         return "dashboard.html";
     }
 
