@@ -13,11 +13,11 @@
         <form method="POST" th:action="@{/addthisnewauthor}" th:object="${author}">
             <label for="title">Name of new author:</label>
             <br>
-            <input type="text" id="title" th:value="${author.authorName}" th:field="*{authorName}" required minlength="4">
+            <input type="text" id="title" th:value="${author.authorName}" th:field="*{authorName}" required minlength="1">
             <br>
             <label for="url">Write country of new author:</label>
             <br>
-            <input type="text" id="url" th:value="${author.authorCountry}" th:field="*{authorCountry}" required minlength="4">
+            <input type="text" id="url" th:value="${author.authorCountry}" th:field="*{authorCountry}" required minlength="1">
             <br>
             <input type="submit" value="Submit">
         </form>

@@ -31,12 +31,16 @@ public class LibraryController {
     public String dashboard() {
 
         Books book = booksRepository.getById(11);
+        System.out.println(book.getId() + " " + book.getTitle());
+
         return "dashboard.html";
     }
 
     @RequestMapping("/bookslist")
     public String bookListUser(Model model) {
-        model.addAttribute("books", booksRepository.findAll());
+        List<Books> books = booksRepository.findAll();
+
+        model.addAttribute("books", books);
         return "booklistuser.html";
     }
 
