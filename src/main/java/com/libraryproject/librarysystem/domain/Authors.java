@@ -15,8 +15,6 @@ public class Authors {
     @ManyToMany
     private List<Books> booksList;
 
-    public Authors() {
-    }
 
     public Authors(int authorID, String authorName, String authorCountry) {
         this.authorID = authorID;
@@ -27,6 +25,10 @@ public class Authors {
     public Authors(String authorName, String authorCountry) {
         this.authorName = authorName;
         this.authorCountry = authorCountry;
+    }
+
+    public Authors() {
+
     }
 
     public List<Books> getBooksList() {

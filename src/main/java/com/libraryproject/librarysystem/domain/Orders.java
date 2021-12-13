@@ -23,6 +23,19 @@ public class Orders {
     public Orders() {
     }
 
+    public Orders(Date issueDate, Date returnDate) {
+        this.issueDate = issueDate;
+        this.returnDate = returnDate;
+    }
+
+    public Orders(Users user, List<Books> booksList, Date issueDate, Date returnDate, OrderStatus orderInfo) {
+        this.user = user;
+        this.booksList = booksList;
+        this.issueDate = issueDate;
+        this.returnDate = returnDate;
+        this.orderInfo = orderInfo;
+    }
+
     public Orders(int orderID, Users user, List<Books> booksList, Date issueDate, Date returnDate, OrderStatus orderInfo) {
         this.orderID = orderID;
         this.user = user;
@@ -32,9 +45,9 @@ public class Orders {
         this.orderInfo = orderInfo;
     }
 
-    public int getOrderID() {
-        return orderID;
-    }
+
+
+    public int getOrderID() { return orderID; }
 
     public void setOrderID(int orderID) {
         this.orderID = orderID;

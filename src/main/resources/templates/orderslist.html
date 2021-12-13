@@ -2,7 +2,7 @@
 <html lang="en" xmlns="http://www.w3.org/1999/html" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Authors list</title>
+    <title>Books list</title>
 </head>
 <body>
 <div style="position: relative; height: 1000px; background-image: url(https://www.marketplace.org/wp-content/uploads/2021/01/Books_New-e1611252343470.jpg?fit=2879%2C1619); opacity: 0.7">
@@ -10,23 +10,27 @@
         <h1 style="color: white; font-size: 90px"> LIBRARY </h1>
     </div>
     <div style="margin-left: 35%; margin-right: auto; padding: 10px">
-        <button onclick="window.location.href='/addnewauthor';">Add new author</button>
+        <button onclick="window.location.href='/addneworder';">Add new order</button>
         <br>
         <table style="color: white; border: solid 2px white; font-size: 25px">
             <thead>
             <tr>
-                <th>Author ID</th>
-                <th>Name</th>
-                <th>Country</th>
+                <th>Order ID</th>
+                <th>User</th>
                 <th>Books</th>
+                <th>Issue date</th>
+                <th>Return date</th>
+                <th>Status</th>
                 <th>Details</th>
             <tbody>
-            <tr th:each="author :${authors}">
-                <td th:text="${author.authorID}">author id</td>
-                <td th:text="${author.authorName}">author name</td>
-                <td th:text="${author.authorCountry}">author country</td>
-                <td th:text="${author.booksList[0].title}">book title</td>
-                <td><a th:href="@{'/viewauthor/' + ${author.authorID}}"> View more</a></td>
+            <tr th:each="order :${orders}">
+                <td th:text="${order.orderID}">order id</td>
+                <td th:text="${order.user}">user</td>
+                <td th:text="${order.booksList[0].title}">book title</td>
+                <td th:text="${order.issueDate}">issue date</td>
+                <td th:text="${order.returnDate}">return date</td>
+                <td th:text="${order.orderInfo}">order status</td>
+                <td><a th:href="@{'/vieworder/' + ${order.orderID}}"> View more</a></td>
             </tr>
             </tbody>
             </tr>
