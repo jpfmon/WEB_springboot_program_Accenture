@@ -12,10 +12,13 @@ public class Users {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int userID;
 
-    private String userFullName;
-    private String email;
-    private String phone;
+
+    private String userName;
     private String password;
+    private String userFullName;
+    private String phone;
+    private String email;
+
     @Enumerated
     private AccessLevel accessLevel;
 
@@ -27,12 +30,13 @@ public class Users {
     public Users() {
     }
 
-    public Users(int userID, String userFullName, String email, String phone, String password, AccessLevel accessLevel) {
+    public Users(int userID, String userFullName, String userName, String phone, String email, String password, AccessLevel accessLevel) {
         this.userID = userID;
         this.userFullName = userFullName;
-        this.email = email;
+        this.userName = userName;
         this.phone = phone;
         this.password = password;
+        this.email = email;
         this.accessLevel = accessLevel;
     }
 
@@ -52,12 +56,12 @@ public class Users {
         this.userFullName = userFullName;
     }
 
-    public String getEmail() {
-        return email;
+    public String getUserName() {
+        return userName;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
     public String getPhone() {
@@ -84,4 +88,7 @@ public class Users {
         this.accessLevel = accessLevel;
     }
 
+    public String getEmail() {return email;}
+
+    public void setEmail(String email) {this.email = email;}
 }
