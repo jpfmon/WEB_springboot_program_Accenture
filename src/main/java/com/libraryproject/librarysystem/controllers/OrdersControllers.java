@@ -44,7 +44,6 @@ public class OrdersControllers {
         @GetMapping("/vieworder/{orderID}")
         public String infoOneOrder(Model model, @PathVariable int orderID) {
             Orders order = ordersRepository.getById(orderID);
-            //Orders order = ordersRepository.getById(orderID);
             model.addAttribute("order", order);
             return "infooneorder.html";
         }
