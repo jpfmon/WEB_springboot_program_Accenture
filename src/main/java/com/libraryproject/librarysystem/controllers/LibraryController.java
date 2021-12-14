@@ -1,9 +1,16 @@
 package com.libraryproject.librarysystem.controllers;
 
 
+import com.libraryproject.librarysystem.domain.AccessLevel;
+import com.libraryproject.librarysystem.domain.Availability;
 import com.libraryproject.librarysystem.domain.Books;
+import com.libraryproject.librarysystem.domain.Users;
 import com.libraryproject.librarysystem.repositories.BooksRepository;
+import com.libraryproject.librarysystem.repositories.UsersRepository;
+import com.libraryproject.librarysystem.security.MyUserDetails;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.MultiValueMap;
@@ -20,6 +27,9 @@ public class LibraryController {
 
     @Autowired
     private BooksRepository booksRepository;
+
+    @Autowired
+    private UsersRepository usersRepository;
 
     @GetMapping("/login")
     public String home() {
@@ -38,7 +48,19 @@ public class LibraryController {
 
     @RequestMapping("/bookslist")
     public String bookListUser(Model model) {
-        List<Books> books = booksRepository.findAll();
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        MyUserDetails currentUser = (MyUserDetails) authentication.getPrincipal();
+        Users user = usersRepository.getById(currentUser.getUserID());
+
+        List<Books> books;
+
+        if (user.getAccessLevel() == AccessLevel.LIBRARIAN) {
+            books = booksRepository.findAll();
+        } else {
+            books = booksRepository.findByAvailability(Availability.AVAILABLE);
+        }
+
+//        List<Books> books = booksRepository.findAll();
 
         model.addAttribute("books", books);
         return "booklistuser.html";
