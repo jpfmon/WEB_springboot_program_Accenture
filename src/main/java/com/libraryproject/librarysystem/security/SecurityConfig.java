@@ -23,17 +23,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     UserDetailsService userDetailsService;
 
-//    @Override
-//    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-//        User.UserBuilder users = User.withDefaultPasswordEncoder();
-//        auth.inMemoryAuthentication().withUser(users.username("1").password("1").roles("ADMIN"));
-//    }
-//
-//    @Override
-//    public void configure(WebSecurity web) throws Exception {
-//        web.ignoring().antMatchers("/vendors/**", "/components/**", "/js/**");
-//    }
-//
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
