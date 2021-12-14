@@ -30,14 +30,23 @@ public class Users {
     public Users() {
     }
 
-    public Users(int userID, String userFullName, String userName, String phone, String email, String password, AccessLevel accessLevel) {
-        this.userID = userID;
+    public Users(String userName, String password, String userFullName, String phone, String email) {
         this.userFullName = userFullName;
         this.userName = userName;
         this.phone = phone;
         this.password = password;
         this.email = email;
+    }
+
+    public Users(int userID, String userName, String password, String userFullName, String phone, String email, AccessLevel accessLevel, List<Orders> myOrders) {
+        this.userID = userID;
+        this.userName = userName;
+        this.password = password;
+        this.userFullName = userFullName;
+        this.phone = phone;
+        this.email = email;
         this.accessLevel = accessLevel;
+        this.myOrders = myOrders;
     }
 
     public int getUserID() {
