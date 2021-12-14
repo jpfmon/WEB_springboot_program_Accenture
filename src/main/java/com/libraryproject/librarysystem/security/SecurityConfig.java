@@ -48,6 +48,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     }
 
+    @Override
+    public void configure(WebSecurity web) throws Exception {
+        web.ignoring().antMatchers("/signup");
+    }
+
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
