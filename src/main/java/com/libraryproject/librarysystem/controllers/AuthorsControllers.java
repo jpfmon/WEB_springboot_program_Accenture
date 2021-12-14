@@ -2,13 +2,12 @@ package com.libraryproject.librarysystem.controllers;
 
 
 import com.libraryproject.librarysystem.domain.Authors;
-import com.libraryproject.librarysystem.domain.Books;
 import com.libraryproject.librarysystem.repositories.AuthorsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
+import org.testng.annotations.Test;
 import javax.validation.Valid;
 import java.util.List;
 
@@ -55,7 +54,7 @@ public class AuthorsControllers {
     }
 
     @PostMapping("/editthisauthor")
-    public String editThisBook(@Valid Authors author, Model model) {
+    public String editThisAuthor(@Valid Authors author, Model model) {
         authorsRepository.save(author);
         author = authorsRepository.getById(author.getAuthorID());
         model.addAttribute("author", author);
@@ -63,7 +62,7 @@ public class AuthorsControllers {
     }
 
     @GetMapping("/viewauthor/delete/{id}")
-    public String deleteBook(@PathVariable int id, Model model) {
+    public String deleteAuthor(@PathVariable int id, Model model) {
         System.out.println("Trying to delete this author: " + id );
         authorsRepository.deleteById(id);
         List<Authors> authors = authorsRepository.findAll();
