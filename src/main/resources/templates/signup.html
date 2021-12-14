@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Sign Up</title>
+</head>
+<body>
+<div style="position: relative; height: 1000px; background-image: url(https://www.marketplace.org/wp-content/uploads/2021/01/Books_New-e1611252343470.jpg?fit=2879%2C1619); opacity: 0.7">
+    <div style="position: relative; text-align: center">
+        <h1 style="color: white; font-size: 90px"> LIBRARY </h1>
+    </div>
+    <div style="margin-left: 35%; margin-right: auto; padding: 10px">
+        <h2 style="color: white"> Please, enter data for new user: </h2>
+        <br>
+        <form style="margin-left: 40px; color:  white" method="POST" th:action="@{/signupnewuser}" th:object="${user}">
+            <label for="username">Username:</label>
+            <br>
+            <input type="text" id="username" th:value="${user.userName}" th:field="*{userName}" required minlength="1">
+            <br>
+            <label for="password">Your password:</label>
+            <br>
+            <input type="text" id="password" th:value="${user.password}" th:field="*{password}" required minlength="1">
+            <br>
+            <label for="userFullName">Your full name:</label>
+            <br>
+            <input type="text" id="userFullName" th:value="${user.userFullName}" th:field="*{userFullName}" required minlength="1">
+            <br>
+            <label for="phone">Your phone:</label>
+            <br>
+            <input type="text" id="phone" th:value="${user.phone}" th:field="*{phone}" required minlength="1">
+            <br>
+            <label for="email">Your email:</label>
+            <br>
+            <input type="text" id="email" th:value="${user.email}" th:field="*{email}" required minlength="1">
+            <br><br>
+            <input type="submit" value="Submit">
+        </form>
+        <br>
+    </div>
+</div>
+<form name="logoutForm" th:action="@{/logout}" method="post" th:hidden="true">
+    <input hidden type="submit" value="Sign Out"/>
+</form>
+</body>
+</html>

@@ -22,9 +22,12 @@
             <br>
             <input type="password" id="validation-password" name="password" th:value="a">
             <br><br>
-            <button type="submit">Log In</button>
+            <button type="submit" style="font-size: 30px">Log In</button>
         </form>
-        <p th:text="${error}" style="color: red"></p>
+        <br>
+        <br>
+        <button onclick="window.location.href='/signup';" style="font-size: 15px">Sign Up</button>
+        <p th:text="${message}" style="color: white"></p>
     </div>
 </div>
 

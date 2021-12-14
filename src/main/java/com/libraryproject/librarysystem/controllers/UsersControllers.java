@@ -11,6 +11,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import javax.validation.Valid;
 
 @Controller
 public class UsersControllers {
@@ -27,9 +30,9 @@ public class UsersControllers {
     }
 
     @PostMapping("/signupnewuser")
-    public String addUser(@RequestParam String userName, String password, String userFullName, String phone, String email) {
-        Users user = new Users(userName, password, userFullName, phone, email);
+    public String addUser(@Valid Users user, Model model, RedirectAttributes redirectAttributes) {
         user.setAccessLevel(AccessLevel.CLIENT);
+        redirectAttributes.addFlashAttribute("message", "Succesfully signed up");
         usersRepository.save(user);
         return "redirect:/login";
     }
