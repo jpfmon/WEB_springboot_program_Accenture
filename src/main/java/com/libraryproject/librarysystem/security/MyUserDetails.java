@@ -15,6 +15,7 @@ import java.util.stream.Collectors;
 
 public class MyUserDetails implements UserDetails {
 
+    private int userID;
     private String userName;
     private String password;
     private String userFullName;
@@ -29,6 +30,7 @@ public class MyUserDetails implements UserDetails {
     }
 
     public MyUserDetails(Users user) {
+        this.userID = user.getUserID();
         this.userName = user.getUserName();
         this.password = user.getPassword();
         this.userFullName = user.getUserFullName();
@@ -49,6 +51,18 @@ public class MyUserDetails implements UserDetails {
         this.userName = username;
     }
 
+    public int getUserID() { return userID; }
+
+    public String getUserFullName() {
+        return userFullName;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public String getEmail() {return email;}
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return accessLevel;
@@ -63,17 +77,6 @@ public class MyUserDetails implements UserDetails {
     public String getUsername() {
         return userName;
     }
-
-
-    public String getUserFullName() {
-        return userFullName;
-    }
-
-    public String getPhone() {
-        return phone;
-    }
-
-    public String getEmail() {return email;}
 
     @Override
     public boolean isAccountNonExpired() {
