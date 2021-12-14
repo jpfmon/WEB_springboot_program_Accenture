@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.testng.annotations.Test;
 import javax.validation.Valid;
 import java.util.List;
 
@@ -21,7 +20,7 @@ public class AuthorsControllers {
     public String allAuthors(Model model) {
         List<Authors> authors = authorsRepository.findAll();
 
-        model.addAttribute("authors", authorsRepository.findAll());
+        model.addAttribute("authors", authors);
         return "authorlist.html";
     }
 
