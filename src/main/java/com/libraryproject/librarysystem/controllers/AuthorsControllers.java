@@ -20,7 +20,7 @@ public class AuthorsControllers {
     public String allAuthors(Model model) {
         List<Authors> authors = authorsRepository.findAll();
 
-        model.addAttribute("authors", authorsRepository.findAll());
+        model.addAttribute("authors", authors);
         return "authorlist.html";
     }
 
