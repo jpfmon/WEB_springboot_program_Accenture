@@ -1,11 +1,9 @@
 package com.libraryproject.librarysystem.controllers;
 
 
-import com.libraryproject.librarysystem.domain.AccessLevel;
-import com.libraryproject.librarysystem.domain.Availability;
-import com.libraryproject.librarysystem.domain.Books;
-import com.libraryproject.librarysystem.domain.Users;
+import com.libraryproject.librarysystem.domain.*;
 import com.libraryproject.librarysystem.repositories.BooksRepository;
+import com.libraryproject.librarysystem.repositories.OrdersRepository;
 import com.libraryproject.librarysystem.repositories.UsersRepository;
 import com.libraryproject.librarysystem.security.MyUserDetails;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -31,6 +30,9 @@ public class LibraryController {
     @Autowired
     private UsersRepository usersRepository;
 
+    @Autowired
+    private OrdersRepository ordersRepository;
+
     @GetMapping("/login")
     public String home() {
 
@@ -39,10 +41,7 @@ public class LibraryController {
 
     @RequestMapping("/")
     public String dashboard() {
-
         Books book = booksRepository.getById(11);
-        System.out.println(book.getId() + " " + book.getTitle());
-
         return "dashboard.html";
     }
 
@@ -54,15 +53,16 @@ public class LibraryController {
 
         List<Books> books;
 
-        if (user.getAccessLevel() == AccessLevel.LIBRARIAN) {
-            books = booksRepository.findAll();
-        } else {
-            books = booksRepository.findByAvailability(Availability.AVAILABLE);
-        }
+//        if (user.getAccessLevel() == AccessLevel.LIBRARIAN) {
+//            books = booksRepository.findAll();
+//        } else {
+//            books = booksRepository.findByAvailability(Availability.AVAILABLE);
+//        }
 
-//        List<Books> books = booksRepository.findAll();
+        books = booksRepository.findAll();
 
         model.addAttribute("books", books);
+        model.addAttribute("available", Availability.AVAILABLE);
         return "booklistuser.html";
     }
 
@@ -78,17 +78,11 @@ public class LibraryController {
 
         String[] booksSelected = map.get("bookIds").toString().replaceAll("\\[","").replaceAll("\\]","").split(",");
 
-        for (String number:booksSelected) {
-            System.out.println("Book selected: " + number.trim());
-        }
-
         ArrayList<Books> list = new ArrayList<>();
 
         for (String number : booksSelected) {
-            System.out.println("ok here with " +  number);
             Integer n =  Integer.parseInt(number.trim());
             list.add(booksRepository.getById(n));
-            System.out.println("Added " + n);
         }
 
         model.addAttribute("booksSelected", list);
@@ -101,9 +95,24 @@ public class LibraryController {
 
         System.out.println("Ended reservation");
         String[] booksSelected = map.get("bookIds").toString().replaceAll("\\[","").replaceAll("\\]","").split(",");
+
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        MyUserDetails currentUser = (MyUserDetails) authentication.getPrincipal();
+        Users user = usersRepository.getById(currentUser.getUserID());
+
+        List<Books> listOfBooks = new ArrayList<>();
+
         for (String number:booksSelected) {
-            System.out.println("Book confirmed: " + number.trim());
+            Integer bookId = Integer.parseInt(number);
+            System.out.println("Id of book: " + bookId);
+            Optional<Books> bookOp = booksRepository.findById(bookId);
+            Books book = (Books) bookOp.get();
+            System.out.println("Book: " + book);
+            book.setAvailability(Availability.RESERVED);
+            listOfBooks.add(book);
         }
+        Orders order = new Orders(user, listOfBooks,new Date(), OrderStatus.UNFINISHED);
+        ordersRepository.save(order);
 
         return "/confirmreservationend.html";
     }

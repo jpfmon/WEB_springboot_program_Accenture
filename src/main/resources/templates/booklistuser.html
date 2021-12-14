@@ -35,7 +35,9 @@
                     <td style="text-align:center" th:text="${book.authorsList.size > 0} ? ${book.authorsList[0].authorName} : 'no authors'">authors</td>
                     <td style="text-align:center"><img th:src="${book.url}" alt="cover image" width="40" height="50"/></td>
                     <td style="text-align:center" th:text="${book.availability}">book status</td>
-                    <td style="text-align:center"><input type="checkbox" th:name="bookIds" th:value="${book.id}"/></td>
+                    <td style="text-align:center">
+                        <span th:if="${book.availability == available}"> <input type="checkbox" style="width: 16px; height: 16px" th:name="bookIds" th:value="${book.id}"/></span>
+                    </td>
                     <td style="text-align:center"><a th:href="@{'/viewbook/' + ${book.id}}"> View more</a></td>
                 </tr>
                 </tbody>

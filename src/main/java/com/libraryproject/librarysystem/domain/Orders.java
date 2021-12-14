@@ -28,6 +28,13 @@ public class Orders {
         this.returnDate = returnDate;
     }
 
+    public Orders(Users user, List<Books> booksList, Date issueDate, OrderStatus orderInfo) {
+        this.user = user;
+        this.booksList = booksList;
+        this.issueDate = issueDate;
+        this.orderInfo = orderInfo;
+    }
+
     public Orders(Users user, List<Books> booksList, Date issueDate, Date returnDate, OrderStatus orderInfo) {
         this.user = user;
         this.booksList = booksList;
