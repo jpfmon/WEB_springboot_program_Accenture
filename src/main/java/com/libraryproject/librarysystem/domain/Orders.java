@@ -1,5 +1,7 @@
 package com.libraryproject.librarysystem.domain;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
@@ -16,7 +18,9 @@ public class Orders {
     @ManyToMany
     private List<Books> booksList;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
     private Date issueDate;
+    @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
     private Date returnDate;
     private OrderStatus orderInfo;
 
