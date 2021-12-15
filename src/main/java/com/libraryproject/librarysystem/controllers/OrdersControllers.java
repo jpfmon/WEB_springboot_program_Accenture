@@ -1,9 +1,6 @@
 package com.libraryproject.librarysystem.controllers;
 
-import com.libraryproject.librarysystem.domain.Books;
-import com.libraryproject.librarysystem.domain.OrderStatus;
-import com.libraryproject.librarysystem.domain.Orders;
-import com.libraryproject.librarysystem.domain.Users;
+import com.libraryproject.librarysystem.domain.*;
 import com.libraryproject.librarysystem.repositories.OrdersRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -60,6 +57,21 @@ public class OrdersControllers {
         ordersRepository.save(order);
         order = ordersRepository.getById(order.getOrderID());
         model.addAttribute("order", order);
+        return "redirect:/orderslist";
+    }
+
+    @GetMapping("/vieworder/finish/{orderID}")
+    public String finishOrder(Model model, @PathVariable int orderID) {
+        Orders order = ordersRepository.getById(orderID);
+        order.setReturnDate(new Date());
+        for (Books book: order.getBooksList()) {
+            book.setAvailability(Availability.AVAILABLE);
+        }
+        order.setOrderInfo(OrderStatus.FINISHED);
+        ordersRepository.save(order);
+
+        model.addAttribute("orders", ordersRepository.findAll());
+
         return "redirect:/orderslist";
     }
 

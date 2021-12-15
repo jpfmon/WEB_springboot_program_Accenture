@@ -9,7 +9,7 @@
     <div style="position: relative; text-align: center">
         <h1 style="color: white; font-size: 90px"> LIBRARY </h1>
     </div>
-    <div style="margin-left: 35%; margin-right: auto; padding: 10px">
+    <div style="margin-left: 25%; margin-right: auto; padding: 10px">
         <form th:action="@{'/'} ">
             <table style="color: white; border: solid 2px white; font-size: 25px">
                 <thead>
@@ -17,14 +17,18 @@
                     <th>Order ID</th>
                     <th>User</th>
                     <th>Issue date</th>
+                    <th>Return date</th>
                     <th>Edit</th>
+                    <th>Finish</th>
                     <th>Delete</th>
                 <tbody>
                 <tr>
                     <td th:text="${order.orderID}">order id</td>
                     <td th:text="${order.user.userFullName}">user that made order</td>
                     <td th:text="${order.issueDate}">date of issue</td>
+                    <td th:text="${order.returnDate}">date of return</td>
                     <td><a th:href="@{'edit/' + ${order.orderID}}" style="color: green"> Edit order</a></td>
+                    <td><a th:href="@{'finish/' + ${order.orderID}}" style="color: red"> Finish order</a></td>
                     <td><a th:href="@{'delete/' + ${order.orderID}}" style="color: red"> Delete order</a></td>
                 </tr>
                 </tbody>
