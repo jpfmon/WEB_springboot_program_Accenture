@@ -110,7 +110,7 @@ public class LibraryController {
         List<Books> listOfBooks = new ArrayList<>();
 
         for (String number:booksSelected) {
-            Integer bookId = Integer.parseInt(number);
+            Integer bookId = Integer.parseInt(number.trim());
             System.out.println("Id of book: " + bookId);
             Optional<Books> bookOp = booksRepository.findById(bookId);
             Books book = (Books) bookOp.get();
