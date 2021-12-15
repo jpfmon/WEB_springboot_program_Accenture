@@ -26,7 +26,7 @@ public class OrdersControllers {
 
     @RequestMapping("/orderslist")
     public String allOrders(Model model) {
-        List<Orders> orders = ordersRepository.findAll();
+        List<Orders> orders;
 
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         MyUserDetails currentUser = (MyUserDetails) authentication.getPrincipal();
@@ -35,9 +35,11 @@ public class OrdersControllers {
         if (user.getAccessLevel() == AccessLevel.LIBRARIAN) {
             System.out.println("It's librarian " + currentUser);
             model.addAttribute("level","librarian");
+            orders = ordersRepository.findAll();
         } else {
             System.out.println("It's user " + currentUser);
             model.addAttribute("level","user");
+            orders = ordersRepository.findByUser(user);
         }
 
         model.addAttribute("orders", orders);
