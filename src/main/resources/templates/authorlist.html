@@ -10,7 +10,7 @@
         <h1 style="color: white; font-size: 90px"> LIBRARY </h1>
     </div>
     <div style="margin-left: 15%; margin-right: auto; padding: 10px">
-        <form action="/addnewauthor" method="get">
+        <form th:if="${level == 'librarian'}" action="/addnewauthor" method="get">
             <input type="submit" value="Add new author" name="Submit"
                    style="color: white; text-shadow: 1px 1px 2px black, 0 0 25px blue, 0 0 6px darkBlue; font-size:17px;" />
         </form>

@@ -52,6 +52,13 @@ public class LibraryController {
         Users user = usersRepository.getById(currentUser.getUserID());
 
         List<Books> books;
+        if (user.getAccessLevel() == AccessLevel.LIBRARIAN) {
+            System.out.println("It's librarian " + currentUser);
+            model.addAttribute("level","librarian");
+        } else {
+            System.out.println("It's user " + currentUser);
+            model.addAttribute("level","user");
+        }
 
 //        if (user.getAccessLevel() == AccessLevel.LIBRARIAN) {
 //            books = booksRepository.findAll();

@@ -2,7 +2,11 @@ package com.libraryproject.librarysystem.controllers;
 
 import com.libraryproject.librarysystem.domain.*;
 import com.libraryproject.librarysystem.repositories.OrdersRepository;
+import com.libraryproject.librarysystem.repositories.UsersRepository;
+import com.libraryproject.librarysystem.security.MyUserDetails;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -17,9 +21,25 @@ public class OrdersControllers {
     @Autowired
     private OrdersRepository ordersRepository;
 
+    @Autowired
+    private UsersRepository usersRepository;
+
     @RequestMapping("/orderslist")
     public String allOrders(Model model) {
         List<Orders> orders = ordersRepository.findAll();
+
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        MyUserDetails currentUser = (MyUserDetails) authentication.getPrincipal();
+        Users user = usersRepository.getById(currentUser.getUserID());
+
+        if (user.getAccessLevel() == AccessLevel.LIBRARIAN) {
+            System.out.println("It's librarian " + currentUser);
+            model.addAttribute("level","librarian");
+        } else {
+            System.out.println("It's user " + currentUser);
+            model.addAttribute("level","user");
+        }
+
         model.addAttribute("orders", orders);
         return "orderslist.html";
     }
@@ -41,6 +61,20 @@ public class OrdersControllers {
     @GetMapping("/vieworder/{orderID}")
     public String infoOneOrder(Model model, @PathVariable int orderID) {
         Orders order = ordersRepository.getById(orderID);
+
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        MyUserDetails currentUser = (MyUserDetails) authentication.getPrincipal();
+        Users user = usersRepository.getById(currentUser.getUserID());
+
+        if (user.getAccessLevel() == AccessLevel.LIBRARIAN) {
+            System.out.println("It's librarian " + currentUser);
+            model.addAttribute("level","librarian");
+        } else {
+            System.out.println("It's user " + currentUser);
+            model.addAttribute("level","user");
+        }
+
+
         model.addAttribute("order", order);
         return "infooneorder.html";
     }

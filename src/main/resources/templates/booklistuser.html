@@ -11,7 +11,7 @@
     </div>
     <div style="padding: 10px">
         <br><br>
-        <button style="margin-left: 30%;" onclick="window.location.href='/addnewbook';">Add new book</button>
+        <button th:if="${level == 'librarian'}" style="margin-left: 30%;" onclick="window.location.href='/addnewbook';">Add new book</button>
         <button style="margin-left: 10%;" onclick="window.location.href='/'">Return to dashboard</button>
         <br>
         <br>

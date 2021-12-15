@@ -18,16 +18,16 @@
                     <th>Name</th>
                     <th>Country</th>
                     <th>Books</th>
-                    <th>Edit</th>
-                    <th>Delete</th>
+                    <th th:if="${level == 'librarian'}">Edit</th>
+                    <th th:if="${level == 'librarian'}">Delete</th>
                 <tbody>
                 <tr>
                     <td th:text="${author.authorID}">author id</td>
                     <td th:text="${author.authorName}">author name</td>
                     <td th:text="${author.authorCountry}">author name</td>
                     <td th:text="${author.booksList.size > 0} ? ${author.booksList[0].title} : 'no book'">book title</td>
-                    <td><a th:href="@{'edit/' + ${author.authorID}}"> Edit author</a></td>
-                    <td><a th:href="@{'delete/' + ${author.authorID}}" style="color: red"> Delete author</a></td>
+                    <td th:if="${level == 'librarian'}"><a th:href="@{'edit/' + ${author.authorID}}"> Edit author</a></td>
+                    <td th:if="${level == 'librarian'}"><a th:href="@{'delete/' + ${author.authorID}}" style="color: red"> Delete author</a></td>
                 </tr>
                 </tbody>
                 </tr>

@@ -18,18 +18,18 @@
                     <th>User</th>
                     <th>Issue date</th>
                     <th>Return date</th>
-                    <th>Edit</th>
-                    <th>Finish</th>
-                    <th>Delete</th>
+                    <th th:if="${level == 'librarian'}">Edit</th>
+                    <th th:if="${level == 'librarian'}">Finish</th>
+                    <th th:if="${level == 'librarian'}">Delete</th>
                 <tbody>
                 <tr>
                     <td th:text="${order.orderID}">order id</td>
                     <td th:text="${order.user.userFullName}">user that made order</td>
                     <td th:text="${order.issueDate}">date of issue</td>
                     <td th:text="${order.returnDate}">date of return</td>
-                    <td><a th:href="@{'edit/' + ${order.orderID}}" style="color: green"> Edit order</a></td>
-                    <td><a th:href="@{'finish/' + ${order.orderID}}" style="color: red"> Finish order</a></td>
-                    <td><a th:href="@{'delete/' + ${order.orderID}}" style="color: red"> Delete order</a></td>
+                    <td th:if="${level == 'librarian'}"><a th:href="@{'edit/' + ${order.orderID}}" style="color: green"> Edit order</a></td>
+                    <td th:if="${level == 'librarian'}"><a th:href="@{'finish/' + ${order.orderID}}" style="color: red"> Finish order</a></td>
+                    <td th:if="${level == 'librarian'}"><a th:href="@{'delete/' + ${order.orderID}}" style="color: red"> Delete order</a></td>
                 </tr>
                 </tbody>
                 </tr>

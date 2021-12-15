@@ -1,9 +1,15 @@
 package com.libraryproject.librarysystem.controllers;
 
+import com.libraryproject.librarysystem.domain.AccessLevel;
 import com.libraryproject.librarysystem.domain.Availability;
 import com.libraryproject.librarysystem.domain.Books;
+import com.libraryproject.librarysystem.domain.Users;
 import com.libraryproject.librarysystem.repositories.BooksRepository;
+import com.libraryproject.librarysystem.repositories.UsersRepository;
+import com.libraryproject.librarysystem.security.MyUserDetails;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -16,6 +22,9 @@ public class BooksControllers {
 
     @Autowired
     private BooksRepository booksRepository;
+
+    @Autowired
+    private UsersRepository usersRepository;
 
     @GetMapping("/addnewbook")
     public String bookList(Model model) {
@@ -36,6 +45,20 @@ public class BooksControllers {
     @GetMapping("/viewbook/{id}")
     public String viewOneBook(Model model, @PathVariable int id) {
         Books book = booksRepository.getById(id);
+
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        MyUserDetails currentUser = (MyUserDetails) authentication.getPrincipal();
+        Users user = usersRepository.getById(currentUser.getUserID());
+
+        if (user.getAccessLevel() == AccessLevel.LIBRARIAN) {
+            System.out.println("It's librarian " + currentUser);
+            model.addAttribute("level","librarian");
+        } else {
+            System.out.println("It's user " + currentUser);
+            model.addAttribute("level","user");
+        }
+
+
         model.addAttribute("book", book);
         return "infoonebook.html";
     }
