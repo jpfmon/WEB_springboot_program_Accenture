@@ -15,20 +15,22 @@
             <br>
             <input type="text" id="user" th:value="${order.user}" th:field="*{user}" required minlength="1">
             <br>
-            <label for="booksList">Write books:</label>
+            <label for="booksList">Write books' ID:</label>
             <br>
-            <input type="text" id="booksList" th:value="${order.booksList}" th:field="*{booksList}" required minlength="1">
+            <input type="datalist" id="booksList" th:value="${order.booksList}" th:field="*{booksList}" required minlength="1">
             <br>
             <label for="issueDate">Write date of issue:</label>
             <br>
             <input type="date" id="issueDate" th:value="${order.issueDate}" th:field="*{issueDate}" required minlength="1">
             <br>
-            <br>
             <label for="returnDate">Write date of return:</label>
             <br>
             <input type="date" id="returnDate" th:value="${order.returnDate}" th:field="*{returnDate}" required minlength="1">
             <br>
-                        <input type="hidden" th:value="1" th:field="*{orderInfo}" />
+            <label for="orderInfo">Add order status:</label>
+            <br>
+            <input type="text" id="orderInfo" th:value="${order.orderInfo}" th:field="*{orderInfo}" required minlength="1">
+            <br>
             <input type="submit" value="Submit">
         </form>
         <br>

@@ -9,8 +9,11 @@
     <div style="position: relative; text-align: center">
         <h1 style="color: white; font-size: 90px"> LIBRARY </h1>
     </div>
-    <div style="margin-left: 35%; margin-right: auto; padding: 10px">
-        <button onclick="window.location.href='/addnewauthor';">Add new author</button>
+    <div style="margin-left: 15%; margin-right: auto; padding: 10px">
+        <form action="/addnewauthor" method="get">
+            <input type="submit" value="Add new author" name="Submit"
+                   style="color: white; text-shadow: 1px 1px 2px black, 0 0 25px blue, 0 0 6px darkBlue; font-size:17px;" />
+        </form>
         <br>
         <table style="color: white; border: solid 2px white; font-size: 25px">
             <thead>
@@ -33,7 +36,10 @@
             </thead>
         </table>
         <br>
-        <button onclick="window.location.href='/';">Return to dashboard</button>
+        <form action="/" method="get">
+            <input type="submit" value="Return to dashhboard" name="Submit"
+                   style="color: white; text-shadow: 1px 1px 2px black, 0 0 25px blue, 0 0 6px darkBlue; font-size:17px;" />
+        </form>
     </div>
 </div>
 <form name="logoutForm" th:action="@{/logout}" method="post">
