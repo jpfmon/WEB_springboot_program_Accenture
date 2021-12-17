@@ -10,16 +10,21 @@
         <h1 style="color: white; font-size: 90px"> LIBRARY </h1>
     </div>
     <div style="margin-left: 35%; margin-right: auto; padding: 10px">
-        <form method="POST" th:action="@{/addthisnewbook}" th:object="${book}">
+        <form  th:action="@{/addthisnewbook}">
             <label for="title">Write tittle for new book:</label>
             <br>
-            <input type="text" id="title" th:value="${book.title}" th:field="*{title}" required minlength="4">
+            <input type="text" id="title" th:name="title" required minlength="4">
             <br>
+            <label for="author">Select author for new book:</label>
+            <br>
+            <select id="author" th:name="author">
+                <option th:each="author : ${authors}" th:value="${author.authorID}" th:text="${author.authorName}"></option>
+            </select>
+            <br><br>
             <label for="url">Write url for new book:</label>
             <br>
-            <input type="text" id="url" th:value="${book.url}" th:field="*{url}" required minlength="4">
-            <br>
-            <input type="hidden" th:value="1" th:field="*{availability}" />
+            <input type="text" id="url" th:name="url" required minlength="4">
+            <br><br>
             <input type="submit" value="Submit">
         </form>
         <br>

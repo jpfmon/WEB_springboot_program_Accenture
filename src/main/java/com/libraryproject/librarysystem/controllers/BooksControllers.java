@@ -1,9 +1,7 @@
 package com.libraryproject.librarysystem.controllers;
 
-import com.libraryproject.librarysystem.domain.AccessLevel;
-import com.libraryproject.librarysystem.domain.Availability;
-import com.libraryproject.librarysystem.domain.Books;
-import com.libraryproject.librarysystem.domain.Users;
+import com.libraryproject.librarysystem.domain.*;
+import com.libraryproject.librarysystem.repositories.AuthorsRepository;
 import com.libraryproject.librarysystem.repositories.BooksRepository;
 import com.libraryproject.librarysystem.repositories.UsersRepository;
 import com.libraryproject.librarysystem.security.MyUserDetails;
@@ -15,6 +13,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 
 
 @Controller
@@ -26,17 +27,30 @@ public class BooksControllers {
     @Autowired
     private UsersRepository usersRepository;
 
+    @Autowired
+    private AuthorsRepository authorsRepository;
+
     @GetMapping("/addnewbook")
     public String bookList(Model model) {
-        Books book = new Books();
-        model.addAttribute("book", book);
+
+        model.addAttribute("authors", authorsRepository.findAll());
 
         return "addnewbook.html";
     }
 
-    @PostMapping("/addthisnewbook")
-    public String addBook(@RequestParam String title, String url) {
+    @GetMapping("/addthisnewbook")
+    public String addBook(@RequestParam(value = "title") String title,
+                          @RequestParam(value = "url") String url,
+                          @RequestParam(value = "author") String authorID) {
         Books book = new Books(title, url);
+        Optional<Authors> authorOP = authorsRepository.findById(Integer.parseInt(authorID.trim()));
+        Authors author = authorOP.get();
+        List<Books> listForAuthor = new ArrayList<>();
+        listForAuthor.add(book);
+        author.setBooksList(listForAuthor);
+        List<Authors> authorsList = new ArrayList<>();
+        authorsList.add(author);
+        book.setAuthorsList(authorsList);
         book.setAvailability(Availability.AVAILABLE);
         booksRepository.save(book);
         return "redirect:/bookslist";
