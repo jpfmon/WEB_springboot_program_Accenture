@@ -28,7 +28,7 @@
                     <td th:text="${order.issueDate}">date of issue</td>
                     <td th:text="${order.returnDate}">date of return</td>
                     <td th:if="${level == 'librarian'}"><a th:href="@{'edit/' + ${order.orderID}}" style="color: green"> Edit order</a></td>
-                    <td th:if="${level == 'librarian'}"><a th:href="@{'finish/' + ${order.orderID}}" style="color: red"> Finish order</a></td>
+                    <td th:if="${level == 'librarian'}"><a th:href="@{'finish/' + ${order.orderID}}" style="color: blue"> Finish order</a></td>
                     <td th:if="${level == 'librarian'}"><a th:href="@{'delete/' + ${order.orderID}}" style="color: red"> Delete order</a></td>
                 </tr>
                 </tbody>
