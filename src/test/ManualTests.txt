@@ -1,0 +1,130 @@
+LibTest01  ###############################################
+
+Title: Sign Up – It is possible to create a new user
+Description: a new visitor to Library app, should be able to create a new user profile for logging in
+Assumption: a supported browser with connection should be used
+Test Steps:
+1.	Navigate to http://<librarydomain>/signup
+2.	Enter correct data for fields:
+a.	Username
+b.	Password
+c.	Full name
+d.	Phone
+e.	Email
+3.	Submit form
+Expected result: login page should be displayed, and a text below “Sign Up” button should be shown, reading: “Successfully signed up”
+
+LibTest02  ###############################################
+
+Title: Add a book - Add a book to the database.
+Description: A user with LIBRARIAN access level should be able to add a book to the database.
+Precondition: the LIBRARIAN should already be logged in.
+Assumption: a supported browser is being used and user has LIBRARIAN access level.
+Test steps:
+1. Press "See books list" button.
+2. Press "Add new book" button.
+3. In the field "Write title for new book" enter book title.
+4. Choose an author from drop down menu.
+5. In the field "Write url for new book" enter url for picture of the book.
+6. Press "Submit" button
+Expected result:
+The book should be added to the database and user should be returned to the books list.
+
+
+LibTest03  ###############################################
+
+Title: Add an author - Add an author to the database.
+Description: A user with LIBRARIAN access level should be able to add an author to the database.
+Precondition: the LIBRARIAN should already be logged in.
+Assumption: a supported browser is being used and user has LIBRARIAN access level.
+Test steps:
+1. Press "See authors list" button.
+2. Press "Add new author" button.
+3. In the field "Name of new author" enter name of the author.
+4. In the field "Write country of new author" enter a country the author is from.
+5. Press "Submit" button
+Expected result:
+The author should be added to the database and user should be returned to the authors list.
+
+###############################################
+Title: Edit an author- Change information about an author in the database.
+Precondition: the LIBRARIAN should already be logged in.
+Assumption: a supported browser is being used and user has LIBRARIAN access level.
+Test steps:
+1. Press "See authors list" button.
+2. Choose a correct author and click “View more”.
+3. Press "Edit author".
+3. In the field "Name of new author" enter name of the author.
+4. In the field "Write country of new author" enter a country the author is from.
+5. Press "Submit" button
+Expected Result:
+New information about the author should be added to the database and user should be returned to the authors list.
+
+##########Android application Tests############
+
+#########Test case 1##########
+
+Title: Login window – successfully authenticate an account with username and password.
+Description: A registered user should be able to successfully login with username and password.
+Precondition: the user must already be registered with a username and password.
+Assumption: a supported version of Android is being used.
+Test Steps:
+1.	Open the Android application.
+2.	In the ’username’ field, enter ‘a’.
+3.	In the ’password’ field, enter ‘a’.
+4.	Click the ‘Log in’ button.
+Expected Result: the application changes to a window displaying the books’ list.
+
+#########Test case 2#########
+
+Title: Login window – authenticate that an account with entered username and password doesn’t exist.
+Description: An unregistered user should not be able to login with username and password.
+Precondition: the user must not be registered.
+Assumption: a supported version of Android is being used.
+Test Steps:
+1.	Open the Android application.
+2.	In the ’username’ field, enter ‘jhhh’.
+3.	In the ’password’ field, enter ’fsdfsdfsd’.
+4.	Click the ‘Log in’ button.
+Expected Result: the application doesn’t change to a window displaying the books’ list and shows an error message: Wrong login.
+
+
+#########Test case 3#########
+
+Title: Main window – create a reservation for selected books.
+Description: A registered user should be able to select books and make a reservation.
+Precondition: the user must be successfully logged in.
+Assumption: a supported version of Android is being used.
+Test Steps:
+1.	Select the wanted books by clicking on them in the list.
+2.	Click the ‘Make reservation’ button.
+3.	In the new window press ‘Confirm’ button.
+Expected Result: the reservation is registered in the database and user is taken back to the main window.
+
+#########Test case 4#########
+
+Title: User window – change account’s username.
+Description: A registered user should be able to change their username.
+Precondition: the user must be successfully logged in.
+Assumption: a supported version of Android is being used.
+Test Steps:
+1.	Click the ‘Person” icon at the top of the screen.
+2.	In the ‘Username’ field enter ‘new username’.
+3.	Click ‘Save’ button.
+Expected Result: the username of the user is changed in the database and user is taken back to the main window.
+
+#########Test case 5#########
+
+Title: User window – sign out.
+Description: A registered user should be able to sign out of the system.
+Precondition: the user must be successfully logged in.
+Assumption: a supported version of Android is being used.
+Test Steps:
+1.	Click the ‘Person” icon at the top of the screen.
+2.	Click ‘Sign out’ button.
+Expected Result: user is taken back to the login window.
+
+
+
+
+
