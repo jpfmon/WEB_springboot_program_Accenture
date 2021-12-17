@@ -60,13 +60,13 @@ public class LibraryController {
             model.addAttribute("level","user");
         }
 
-//        if (user.getAccessLevel() == AccessLevel.LIBRARIAN) {
-//            books = booksRepository.findAll();
-//        } else {
-//            books = booksRepository.findByAvailability(Availability.AVAILABLE);
-//        }
+        if (user.getAccessLevel() == AccessLevel.LIBRARIAN) {
+            books = booksRepository.findAll();
+        } else {
+            books = booksRepository.findByAvailability(Availability.AVAILABLE);
+        }
 
-        books = booksRepository.findAll();
+//        books = booksRepository.findAll();
 
         model.addAttribute("books", books);
         model.addAttribute("available", Availability.AVAILABLE);
