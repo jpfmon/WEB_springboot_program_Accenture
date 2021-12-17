@@ -30,6 +30,13 @@ public class Users {
     public Users() {
     }
 
+    public Users(String userName, String userFullName, String phone, String email) {
+        this.userName = userName;
+        this.userFullName = userFullName;
+        this.phone = phone;
+        this.email = email;
+    }
+
     public Users(String userName, String password, String userFullName, String phone, String email) {
         this.userFullName = userFullName;
         this.userName = userName;

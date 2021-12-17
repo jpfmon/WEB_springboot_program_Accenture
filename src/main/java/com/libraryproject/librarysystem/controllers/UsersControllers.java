@@ -31,7 +31,7 @@ public class UsersControllers {
     }
 
     @PostMapping("/signupnewuser")
-    public String addUser(@Valid Users user, Model model, RedirectAttributes redirectAttributes) {
+    public String addUser(@Valid Users user, RedirectAttributes redirectAttributes) {
         user.setAccessLevel(AccessLevel.CLIENT);
         redirectAttributes.addFlashAttribute("message", "Succesfully signed up");
         usersRepository.save(user);
